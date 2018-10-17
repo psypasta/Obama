@@ -7,6 +7,8 @@ import { ThreadComponent } from './thread/thread.component';
 import { HomeComponent } from './home/home.component';
 import { CommunityComponent } from './community/community.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AppRoutingModule } from './app-routing.module';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -15,10 +17,12 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     ThreadComponent,
     HomeComponent,
     CommunityComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    NavComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
