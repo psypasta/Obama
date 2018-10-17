@@ -1,14 +1,14 @@
 export class User {
 
-  private id: int;
+  private id: number;
   private username: String;
   private created_date: Date;
   private email: String;
 
-  public User() {
-    this.id = 1;
-    this.username = 'default';
-    this.email = 'default@default.com';
-    this.created_date = Date;
+  constructor(id: number, username: String, created_date: Date, email: String) {
+    this.id = id;
+    this.username = username;
+    this.created_date = created_date;
+    this.email = email;
   }
 }
