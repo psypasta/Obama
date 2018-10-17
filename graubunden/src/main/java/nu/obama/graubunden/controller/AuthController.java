@@ -96,5 +96,4 @@ public class AuthController {
     public String getFoosBySimplePath() {
         return "Get some Foos";
     }
-
 }
