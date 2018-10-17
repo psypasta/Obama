@@ -18,7 +18,7 @@ public class UserJpaTest {
     private TestEntityManager tem;
 
     @Test
-    public void mapping(){
+    public void mapping() {
         User max = this.tem.persistFlushFind(new User("Max", "fulsomenko", "max.blomstervall@gmail.com", "placeHolder1!"));
         Assertions.assertThat(max.getName()).isEqualTo("Max");
         Assertions.assertThat(max.getId()).isNotNull();
