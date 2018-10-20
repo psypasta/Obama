@@ -9,9 +9,10 @@ import {CommunityComponent} from './community/community.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NavComponent} from './nav/nav.component';
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule} from '@angular/router';
 import { GroupComponent } from './group/group.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -29,9 +30,10 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{provide: APP_BASE_HREF, useValue: '/'}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
