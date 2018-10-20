@@ -6,12 +6,12 @@ export class Thread {
   private title: String;
   private content: String;
   private link: String;
-  private createBy: number;
+  private createBy: String;
   private updateBy: Date;
   private createdWhen: Date;
   private Group: String;
   constructor(id: number, title: String, content: String, link: String,
-              createBy: number, updateBy: Date, createdWhen: Date, Group: String) {
+              createBy: String, updateBy: Date, createdWhen: Date, Group: String) {
     this.id = id;
     this.title = title;
     this.content = content;
