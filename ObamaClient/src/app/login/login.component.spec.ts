@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {User} from '../model/user';
 
 describe('Component: Login', () => {
 
@@ -40,8 +41,17 @@ describe('Component: Login', () => {
   it('email field validity', () => {
     let errors;
     const email = component.form.controls['email'];
+    email.setValue('test');
     errors = email.errors || {};
     expect(errors['required']).toBeTruthy();
   });
 
+  it('Entering email and password emits loggedIn event', () => {
+    let user: User;
+
+    component.loggedIn.subscribe((value) => user = value);
+
+    expect(user.email).toBe('test@example.com');
+    expect(user.password).toBe('12345678');
+  });
 });
