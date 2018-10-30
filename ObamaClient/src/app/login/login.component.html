@@ -1,4 +1,5 @@
-<div id="login">
+<h1 mat-dialog-title>Login</h1>
+<div id="login" mat-dialog-content>
 <h2>Login</h2>
 <form (ngSubmit)="login()" [formGroup]="form">
   <label for="email">Username or Email</label>
@@ -11,4 +12,5 @@
   <br>
   <button type="submit">Login</button>
 </form>
+<button (click)="close()">Close</button>
 </div>

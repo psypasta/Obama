@@ -13,6 +13,14 @@ import { GroupComponent } from './group/group.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {APP_BASE_HREF} from '@angular/common';
 import { ThreadPageComponent } from './thread-page/thread-page.component';
+import {
+  MatInputModule,
+  MatDialogModule,
+  MatProgressSpinnerModule,
+  MatButtonModule,
+  MatDialog
+} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,9 +39,16 @@ import { ThreadPageComponent } from './thread-page/thread-page.component';
     AppRoutingModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule,
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '/'}],
+  entryComponents: [LoginComponent],
+  providers: [MatDialog,
+    {provide: APP_BASE_HREF, useValue: '/'}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
