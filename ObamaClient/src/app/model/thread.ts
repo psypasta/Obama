@@ -25,7 +25,7 @@ export class Thread {
     this._createdWhen = createdWhen;
     this._group = group;
     this._updateBy = updateBy;
-  };
+  }
 
   public boat(value: boolean) {
     if (value) {

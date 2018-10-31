@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Thread} from '../model/thread';
+import {ThreadService} from '../service/thread.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-thread-page',
@@ -7,10 +9,28 @@ import {Thread} from '../model/thread';
   styleUrls: ['./thread-page.component.css']
 })
 export class ThreadPageComponent implements OnInit {
-  constructor() { }
+   id: number;
+   thread;
+   finishedLoading;
 
-  ngOnInit() {
+  constructor(
+     private threadService: ThreadService,
+     private route: ActivatedRoute,
+  ) {
   }
 
+  ngOnInit(
+  ) {
+    console.log('Crashing and burning yet?');
+     this.getHero();
+  }
 
+  getHero(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.thread = this.threadService.getThread(id);
+    this.finishedLoading = true;
+    console.log(this.thread);
+
+
+  }
 }

@@ -10,6 +10,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'content', component: ThreadPageComponent},
   {path: 'userpage', component: UserProfileComponent},
+  {path: 'thread/:id', component: ThreadPageComponent},
 ];
 
 @NgModule({
