@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Thread} from '../model/thread';
 
 @Component({
   selector: 'app-thread-page',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./thread-page.component.css']
 })
 export class ThreadPageComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {
   }
+
 
 }
