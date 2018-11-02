@@ -1,3 +1,12 @@
-<p>
-  thread works!
-</p>
+
+<div id="post">
+  <div id="title">
+    <h3>
+  <a href="thread/{{thread.id}}">{{thread.title}}</a>
+    </h3>
+      <div id="information">
+             Created by: <a routerLink="/userpage" target="_blank">{{thread.createBy.email}}</a> for g/{{thread.group.group_name}}
+      </div>
+  <br>
+  </div>
+</div>

@@ -1,3 +1,16 @@
-<p>
-  login works!
-</p>
+<h1 mat-dialog-title>Login</h1>
+<div id="login" mat-dialog-content>
+<h2>Login</h2>
+<form (ngSubmit)="login()" [formGroup]="form">
+  <label for="email">Username or Email</label>
+  <br>
+  <input type="email" formControlName="email" id="email">
+  <br>
+  <label for="pw">Password</label>
+  <br>
+  <input type="password" formControlName="password" id="pw">
+  <br>
+  <button type="submit">Login</button>
+</form>
+<button (click)="close()">Close</button>
+</div>

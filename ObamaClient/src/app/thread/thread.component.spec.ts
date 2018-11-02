@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ThreadComponent } from './thread.component';
+import {ThreadComponent} from './thread.component';
+import {Thread} from '../model/thread';
+import {User} from '../model/user';
 
 describe('ThreadComponent', () => {
   let component: ThreadComponent;
@@ -8,9 +10,9 @@ describe('ThreadComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ThreadComponent ]
+      declarations: [ThreadComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
