@@ -22,10 +22,10 @@ export class ThreadPageComponent implements OnInit {
   ngOnInit(
   ) {
     console.log('Crashing and burning yet?');
-     this.getHero();
+     this.getThread();
   }
 
-  getHero(): void {
+  getThread(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.thread = this.threadService.getThread(id);
     this.finishedLoading = true;

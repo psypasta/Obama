@@ -1,9 +1,11 @@
 
 <div id="post">
   <div id="title">
-  <a href="{{associatedLink()}}">{{threadsTitle()}}</a>
+    <h3>
+  <a href="thread/{{thread.id}}">{{thread.title}}</a>
+    </h3>
       <div id="information">
-             inlagd utav: <a routerLink="/userpage" target="_blank">{{getUser()}}</a> till g/{{getGroup()}}
+             Created by: <a routerLink="/userpage" target="_blank">{{thread.createBy.email}}</a> for g/{{thread.group.group_name}}
       </div>
   <br>
   </div>
