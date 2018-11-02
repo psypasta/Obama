@@ -16,19 +16,22 @@ public class Post {
     @Enumerated(EnumType.STRING)
     @NaturalId
     @Column(length = 30)
-    private PostType type = null;
+    private PostType type;
 
-    @OneToOne
-    private User u = null;
-
-    @NotBlank
-    private String postTitle = null;
+    @ManyToOne
+    private User u;
 
     @NotBlank
-    private String content = null;
+    private String postTitle;
 
-    public Post(PostType postType, String title, String content) {
-        this.type = postType;
+    @NotBlank
+    private String content;
+
+    public Post(){
+
+    }
+
+    public Post(String title, String content) {
         this.postTitle = title;
         this.content = content;
     }
@@ -39,6 +42,39 @@ public class Post {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getU() {
+        return u;
+    }
+
+    public void setU(User u) {
+        this.u = u;
+    }
+
+
+    public PostType getType() {
+        return type;
+    }
+
+    public void setType(PostType type) {
+        this.type = type;
+    }
+
+    public String getPostTitle() {
+        return postTitle;
+    }
+
+    public void setPostTitle(String postTitle) {
+        this.postTitle = postTitle;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
 }
