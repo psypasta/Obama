@@ -1,24 +1,37 @@
 package nu.obama.graubunden.payload;
 
+import nu.obama.graubunden.model.PostType;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class CreatePostRequest {
 
     @NotNull
-    private int userId;
+    private long userId;
 
     @NotBlank
     private String postTitle;
 
+    @NotNull
+    private boolean postType;
+
     @NotBlank
     private String content;
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public boolean getPostType() {
+        return postType;
+    }
+
+    public void setPostType(boolean postType) {
+        this.postType = postType;
+    }
+
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 

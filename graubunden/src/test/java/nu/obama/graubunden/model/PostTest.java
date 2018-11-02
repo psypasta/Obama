@@ -9,8 +9,11 @@ public class PostTest {
     public void creation(){
         long expected = 1L;
 
-        Post link = new Post(PostType.LINK_POST, "", "");
-        Post text = new Post(PostType.TEXT_POST,"", "");
+        Post link = new Post( "","");
+        Post text = new Post("", "");
+
+        link.setType(PostType.LINK_POST);
+        text.setType(PostType.TEXT_POST);
 
         link.setId(expected);
         text.setId(expected+1);

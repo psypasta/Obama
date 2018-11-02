@@ -1,18 +1,24 @@
 package nu.obama.graubunden.controller;
 
+import nu.obama.graubunden.exception.AppException;
 import nu.obama.graubunden.model.Post;
 import nu.obama.graubunden.model.PostType;
+import nu.obama.graubunden.model.User;
 import nu.obama.graubunden.payload.ApiResponse;
 import nu.obama.graubunden.payload.CreatePostRequest;
 import nu.obama.graubunden.repository.PostRepository;
+import nu.obama.graubunden.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/posts")
@@ -21,17 +27,49 @@ public class PostController {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired UserRepository userRepository;
+
     @ResponseBody
     public String getFoosBySimplePath() {
         return "Get some Foos";
     }
 
+    @GetMapping("/get")
+    public List<Post> retrieveAllPosts() {
+        return postRepository.findAll();
+    }
+
+    @GetMapping("/get/{id}")
+    public Post retrievePost(@PathVariable long id) {
+        Optional<Post> post = postRepository.findById(id);
+
+        if (!post.isPresent())
+            throw new AppException("id-" + id);
+
+        return post.get();
+    }
+
     @PostMapping(value = "/create")
     public ResponseEntity<?> createPost(@Valid @RequestBody CreatePostRequest createPostRequest) {
 
-        Post p = new Post(PostType.TEXT_POST,
-                          createPostRequest.getPostTitle(),
+        Post p = new Post(createPostRequest.getPostTitle(),
                           createPostRequest.getContent());
+
+
+        if(createPostRequest.getPostType()){
+            p.setType(PostType.LINK_POST);
+        }
+        else {
+            p.setType(PostType.TEXT_POST);
+        }
+
+        Optional<User> userOptional = userRepository.findById(createPostRequest.getUserId());
+
+        if(!userOptional.isPresent())
+            return new ResponseEntity(new ApiResponse(false, "      "),
+                    HttpStatus.BAD_REQUEST);
+
+        p.setU(userOptional.get());
 
         Post result = postRepository.save(p);
 
@@ -43,35 +81,3 @@ public class PostController {
     }
 
 }
-
-/*
-    @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
-                    HttpStatus.BAD_REQUEST);
-        }
-
-        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
-                    HttpStatus.BAD_REQUEST);
-        }
-
-        // Creating user's account
-        User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
-                signUpRequest.getEmail(), signUpRequest.getPassword());
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-                .orElseThrow(() -> new AppException("User Role not set."));
-
-        user.setRoles(Collections.singleton(userRole));
-
-
-
-        U
-
-        return
-    }
-*/
