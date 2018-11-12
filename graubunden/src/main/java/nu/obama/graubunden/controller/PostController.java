@@ -60,12 +60,11 @@ public class PostController {
         Post p = new Post(createPostRequest.getPostTitle(),
                           createPostRequest.getContent());
 
-
         if(createPostRequest.getPostType()){
-            p.setType(PostType.LINK_POST);
+            p.setPostType(PostType.LINK_POST);
         }
         else {
-            p.setType(PostType.TEXT_POST);
+            p.setPostType(PostType.TEXT_POST);
         }
 
         Optional<User> userOptional = userRepository.findById(createPostRequest.getUserId());

@@ -16,7 +16,7 @@ public class Post {
     @Enumerated(EnumType.STRING)
     @NaturalId
     @Column(length = 30)
-    private PostType type;
+    private PostType postType;
 
     @ManyToOne
     private User u;
@@ -53,12 +53,12 @@ public class Post {
     }
 
 
-    public PostType getType() {
-        return type;
+    public PostType getPostType() {
+        return postType;
     }
 
-    public void setType(PostType type) {
-        this.type = type;
+    public void setPostType(PostType postType) {
+        this.postType = postType;
     }
 
     public String getPostTitle() {

@@ -12,8 +12,8 @@ public class PostTest {
         Post link = new Post( "","");
         Post text = new Post("", "");
 
-        link.setType(PostType.LINK_POST);
-        text.setType(PostType.TEXT_POST);
+        link.setPostType(PostType.LINK_POST);
+        text.setPostType(PostType.TEXT_POST);
 
         link.setId(expected);
         text.setId(expected+1);
