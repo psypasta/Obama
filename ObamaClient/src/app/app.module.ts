@@ -21,6 +21,7 @@ import {
   MatDialog
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserProfileComponent,
     GroupComponent,
     ThreadPageComponent,
+    CommentComponent,
 
   ],
   imports: [
