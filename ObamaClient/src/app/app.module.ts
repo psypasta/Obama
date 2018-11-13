@@ -22,6 +22,7 @@ import {
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentComponent } from './comment/comment.component';
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CommentComponent } from './comment/comment.component';
     MatButtonModule,
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
+    HttpClientModule,
   ],
   entryComponents: [LoginComponent],
   providers: [MatDialog,
