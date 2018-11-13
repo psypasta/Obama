@@ -10,9 +10,12 @@ import nu.obama.graubunden.payload.CreatePostRequest;
 import nu.obama.graubunden.repository.GroupRepository;
 import nu.obama.graubunden.repository.PostRepository;
 import nu.obama.graubunden.repository.UserRepository;
+import nu.obama.graubunden.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -32,7 +35,14 @@ public class PostController {
     @Autowired
     private PostRepository postRepository;
 
-    @Autowired UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    JwtTokenProvider tokenProvider;
 
     @ResponseBody
     public String getFoosBySimplePath() {
@@ -41,6 +51,9 @@ public class PostController {
 
     @GetMapping("/get")
     public List<Post> retrieveAllPosts() {
+
+
+
         return postRepository.findAll();
     }
 
