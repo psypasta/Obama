@@ -1,11 +1,13 @@
 package nu.obama.graubunden.controller;
 
 import nu.obama.graubunden.exception.AppException;
+import nu.obama.graubunden.model.Group;
 import nu.obama.graubunden.model.Post;
 import nu.obama.graubunden.model.PostType;
 import nu.obama.graubunden.model.User;
 import nu.obama.graubunden.payload.ApiResponse;
 import nu.obama.graubunden.payload.CreatePostRequest;
+import nu.obama.graubunden.repository.GroupRepository;
 import nu.obama.graubunden.repository.PostRepository;
 import nu.obama.graubunden.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/posts")
 public class PostController {
+
+    @Autowired
+    private GroupRepository groupRepository;
 
     @Autowired
     private PostRepository postRepository;
@@ -55,12 +60,11 @@ public class PostController {
         Post p = new Post(createPostRequest.getPostTitle(),
                           createPostRequest.getContent());
 
-
         if(createPostRequest.getPostType()){
-            p.setType(PostType.LINK_POST);
+            p.setPostType(PostType.LINK_POST);
         }
         else {
-            p.setType(PostType.TEXT_POST);
+            p.setPostType(PostType.TEXT_POST);
         }
 
         Optional<User> userOptional = userRepository.findById(createPostRequest.getUserId());
