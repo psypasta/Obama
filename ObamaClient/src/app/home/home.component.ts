@@ -14,15 +14,25 @@ export class HomeComponent implements OnInit {
   threads: Thread[];
   loading;
   constructor(
-    public threadservice: ThreadService,
+    public threadService: ThreadService,
     public dialog: MatDialog
   ) { }
 
   ngOnInit() {
   this.getAllThreads();
   }
-  getAllThreads(){
-   this.threads = this.threadservice.getAllThreads();
-   this.loading = false;
+  getAllThreads() {
+    this.threadService.getAllThreads().subscribe(
+      threads => {
+        console.log(threads);
+        this.threads = threads;
+      },
+      error => {
+        console.log('Well this is wrong');
+      },
+      () => {
+        this.loading = false;
+      });
+    this.loading = false;
   }
 }
