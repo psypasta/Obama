@@ -49,15 +49,13 @@ public class PostController {
         return "Get some Foos";
     }
 
-    @GetMapping("/get")
+    @GetMapping
     public List<Post> retrieveAllPosts() {
-
-
 
         return postRepository.findAll();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public Post retrievePost(@PathVariable long id) {
         Optional<Post> post = postRepository.findById(id);
 
@@ -67,7 +65,7 @@ public class PostController {
         return post.get();
     }
 
-    @PostMapping(value = "/create")
+    @PostMapping
     public ResponseEntity<?> createPost(@Valid @RequestBody CreatePostRequest createPostRequest) {
 
         Post p = new Post(createPostRequest.getPostTitle(),
