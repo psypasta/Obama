@@ -31,12 +31,12 @@ public class GroupController {
     @Autowired
     private PostRepository postRepository;
 
-    @GetMapping("/get/{name}")
+    @GetMapping("/{name}")
     public Group retrieveGroupByName(@PathVariable String name) {
         Optional<Group> group = groupRepository.findByGroupName(name);
         return group.get();
     }
-    @PostMapping(value = "/create")
+    @PostMapping
     public ResponseEntity<?> createGroup(@Valid @RequestBody CreateGroupRequest createGroupRequest) {
 
         Group group = new Group(createGroupRequest.getGroupName(),
