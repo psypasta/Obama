@@ -33,14 +33,5 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(`Login ${this.form.value}`);
-    if (this.form.valid) {
-      this.loggedIn.emit(
-        new User(
-          this.form.value.email,
-          this.form.value.password
-        )
-      );
-    }
   }
 }

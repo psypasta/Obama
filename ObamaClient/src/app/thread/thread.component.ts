@@ -27,6 +27,7 @@ export class ThreadComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.thread);
   }
 
 }

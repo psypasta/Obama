@@ -11,14 +11,14 @@ export class Thread {
   private _id: number;
   private _title: String;
   private _content: String;
-  private _createBy: User;
+  private _u: User;
   private _postType: PostType;
 
   constructor(id: number, postType: PostType, createBy: User, title: String, content: String,
               ) {
     this._id = id;
     this._postType = postType;
-    this._createBy = createBy;
+    this._u = createBy;
     this._title = title;
     this._content = content;
   }
@@ -36,6 +36,6 @@ export class Thread {
   }
 
   get createBy(): User {
-    return this._createBy;
+    return this._u;
   }
 }

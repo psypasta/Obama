@@ -7,7 +7,7 @@ import {User} from '../model/user';
 import {forEach} from '@angular/router/src/utils/collection';
 
 
-const threadURL = 'http://localhost:5000/threads/';
+const threadURL = 'http://localhost:5000/posts/';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -22,7 +22,7 @@ export class ThreadService {
   constructor(private http: HttpClient) {
   }
 
-  getThread(threadId: number): Object {
+  getThread(threadId: number): Observable<Thread> {
     return this.http.get<Thread>(threadURL + 'get/' + threadId);
   }
 
