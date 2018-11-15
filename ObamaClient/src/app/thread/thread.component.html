@@ -5,7 +5,7 @@
   <a href="thread/{{thread.id}}">{{thread.title}}</a>
     </h3>
       <div id="information">
-             Created by: <a routerLink="/userpage" target="_blank">{{thread.createBy.email}}</a> for g/{{thread.group.group_name}}
+             Created by: <a routerLink="/userpage" target="_blank">{{associatedLink()}}</a> for g/{{getGroup()}}
       </div>
   <br>
   </div>
