@@ -1,19 +1,24 @@
-import {Role} from './role';
+
+enum Roles {
+  ROLE_USER,
+  ROLE_ADMIN
+}
 
 export class User {
 
   private _id: number;
   private _username: String;
   private _email: String;
-  private _Role: Role;
-  private _password: String;
+  private _name: String;
+  private _roles: Roles;
+  private _username: String;
 
-
-  constructor(id: number, username: String, email: String, Role: Role) {
-    this._id = id;
-    this._username = username;
+  constructor(email: String, id: number, name: String, roles: Roles, username: String) {
     this._email = email;
-    this._Role = Role;
+    this._id = id;
+    this._name = name;
+    this._roles = roles;
+    this._username = username;
   }
 
   get id(): number {
@@ -24,7 +29,15 @@ export class User {
     return this._email;
   }
 
-  set password(value: String) {
-    this._password = value;
+  get name(): String {
+    return this._name;
+  }
+
+  get roles(): Roles {
+    return this._roles;
+  }
+
+  get username(): String {
+    return this._username;
   }
 }

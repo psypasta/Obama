@@ -2,10 +2,10 @@
 <div id="post">
   <div id="title">
     <h3>
-  <a href="thread/{{thread.id}}">{{thread.title}}</a>
+  <a href="thread/{{thread.id}}">{{thread.postTitle}}</a>
     </h3>
       <div id="information">
-             Created by: <a routerLink="/userpage" target="_blank">{{associatedLink()}}</a> for g/{{getGroup()}}
+             Created by: <a routerLink="/userpage" target="_blank">{{thread.u.username}}</a>
       </div>
   <br>
   </div>

@@ -22,7 +22,7 @@ export class ThreadService {
   constructor(private http: HttpClient) {
   }
 
-  getThread(threadId: number): Object {
+  getThread(threadId: number): Observable<Thread> {
     return this.http.get<Thread>(threadURL + '' + threadId);
   }
 
