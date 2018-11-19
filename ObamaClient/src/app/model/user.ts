@@ -7,11 +7,10 @@ enum Roles {
 export class User {
 
   private _id: number;
-  private _password: String;
+  private _username: String;
   private _email: String;
   private _name: String;
   private _roles: Roles;
-  private _username: String;
 
   constructor(email: String, id: number, name: String, roles: Roles, username: String) {
     this._email = email;

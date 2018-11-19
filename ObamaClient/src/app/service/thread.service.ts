@@ -23,11 +23,11 @@ export class ThreadService {
   }
 
   getThread(threadId: number): Observable<Thread> {
-    return this.http.get<Thread>(threadURL + 'get/' + threadId);
+    return this.http.get<Thread>(threadURL + '' + threadId);
   }
 
   getAllThreads(): Observable<Thread[]> {
-    return this.http.get<Thread[]>(threadURL + 'get/');
+    return this.http.get<Thread[]>(threadURL + '');
   }
 
 }
