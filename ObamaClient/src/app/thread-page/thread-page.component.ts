@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Thread} from '../model/thread';
 import {ThreadService} from '../service/thread.service';
 import {ActivatedRoute} from '@angular/router';
+import {CommentService} from '../service/comment.service';
 
 @Component({
   selector: 'app-thread-page',
@@ -11,10 +12,13 @@ import {ActivatedRoute} from '@angular/router';
 export class ThreadPageComponent implements OnInit {
   id: number;
   thread;
-  finishedLoading;
+  comments;
+  loadedPost;
+  loadedComments;
 
   constructor(
     private threadService: ThreadService,
+    private commentService: CommentService,
     private route: ActivatedRoute,
   ) {
   }
@@ -26,7 +30,6 @@ export class ThreadPageComponent implements OnInit {
 
   getThread(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.thread = this.threadService.getThread(id);
     this.threadService.getThread(id).subscribe(
       thread => {
         console.log(thread);
@@ -36,7 +39,22 @@ export class ThreadPageComponent implements OnInit {
         console.log('Well this is wrong');
       },
       () => {
-        this.finishedLoading = true;
+        this.loadedPost = true;
+        this.getComments();
       });
   }
+  getComments(): void {
+    this.commentService.getThreadComments(this.thread.id).subscribe(
+      comments => {
+        console.log(comments);
+        this.comments = comments;
+      },
+      error => {
+        console.log('Comments could not be loaded');
+      },
+      () => {
+        console.log('Comments loaded');
+        this.loadedComments = true;
+      });
+   }
 }
