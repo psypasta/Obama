@@ -84,7 +84,7 @@ public class PostController {
             return new ResponseEntity(new ApiResponse(false, "      "),
                     HttpStatus.BAD_REQUEST);
 
-        p.setU(userOptional.get());
+        p.setUser(userOptional.get());
 
         Post result = postRepository.save(p);
 

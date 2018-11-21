@@ -19,7 +19,8 @@ public class Post {
     private PostType postType;
 
     @ManyToOne
-    private User u;
+    @JoinColumn(name = "users")
+    private User user;
 
     @NotBlank
     private String postTitle;
@@ -44,12 +45,12 @@ public class Post {
         this.id = id;
     }
 
-    public User getU() {
-        return u;
+    public User getUser() {
+        return user;
     }
 
-    public void setU(User u) {
-        this.u = u;
+    public void setUser(User user) {
+        this.user = user;
     }
 
 
