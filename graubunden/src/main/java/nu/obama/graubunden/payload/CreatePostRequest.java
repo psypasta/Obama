@@ -1,5 +1,6 @@
 package nu.obama.graubunden.payload;
 
+import nu.obama.graubunden.model.Group;
 import nu.obama.graubunden.model.PostType;
 
 import javax.validation.constraints.NotBlank;
@@ -19,8 +20,13 @@ public class CreatePostRequest {
     @NotBlank
     private String content;
 
+    @NotNull
+    private long groupId;
+
+    public long getGroupId() { return this.groupId; }
+
     public long getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public boolean getPostType() {
@@ -51,7 +57,7 @@ public class CreatePostRequest {
         this.content = content;
     }
 
-    public CreatePostRequest () {
+    public CreatePostRequest() {
 
     }
 }

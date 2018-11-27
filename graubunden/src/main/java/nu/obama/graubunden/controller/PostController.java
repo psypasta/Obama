@@ -68,8 +68,7 @@ public class PostController {
     @PostMapping
     public ResponseEntity<?> createPost(@Valid @RequestBody CreatePostRequest createPostRequest) {
 
-        Post p = new Post(createPostRequest.getPostTitle(),
-                          createPostRequest.getContent());
+        Post p = new Post(createPostRequest.getPostTitle(), createPostRequest.getContent());
 
         if(createPostRequest.getPostType()){
             p.setPostType(PostType.LINK_POST);
@@ -78,15 +77,26 @@ public class PostController {
             p.setPostType(PostType.TEXT_POST);
         }
 
+
         Optional<User> userOptional = userRepository.findById(createPostRequest.getUserId());
 
+        Optional<Group> groupOptional = groupRepository.findById(createPostRequest.getGroupId());
+
         if(!userOptional.isPresent())
-            return new ResponseEntity(new ApiResponse(false, "      "),
+            return new ResponseEntity(new ApiResponse(false, "User is fucked"),
                     HttpStatus.BAD_REQUEST);
+
+        if(!groupOptional.isPresent())
+            return new ResponseEntity(new ApiResponse(false, "Group is screwed"),
+                    HttpStatus.BAD_REQUEST);
+
 
         p.setU(userOptional.get());
 
+        p.setGroup(groupOptional.get());
+
         Post result = postRepository.save(p);
+
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/posts/{id}")

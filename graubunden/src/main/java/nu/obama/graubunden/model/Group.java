@@ -21,7 +21,7 @@ public class Group {
     private User user;
 
     @NotBlank
-    @Column(length = 30)
+    @Column(length = 100)
     private String groupTopic;
 
     public Group(){
@@ -40,7 +40,7 @@ public class Group {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -48,7 +48,7 @@ public class Group {
     }
 
     public String getGroupName() {
-        return groupName;
+        return this.groupName;
     }
 
     public void setGroupName(String groupName) {
@@ -56,7 +56,7 @@ public class Group {
     }
 
     public String getGroupTopic() {
-        return groupTopic;
+        return this.groupTopic;
     }
 
     public void setGroupTopic(String groupTopic) {

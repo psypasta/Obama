@@ -1,5 +1,6 @@
 package nu.obama.graubunden.model;
 
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -19,6 +20,11 @@ public class Post {
     private PostType postType;
 
     @ManyToOne
+    @JoinColumn(name = "Group")
+    private Group group;
+
+    @ManyToOne
+    @JoinColumn(name = "User")
     private User u;
 
     @NotBlank
@@ -34,7 +40,12 @@ public class Post {
     public Post(String title, String content) {
         this.postTitle = title;
         this.content = content;
+
     }
+
+    public Group getGroup() { return group; }
+
+    public void setGroup(Group group) { this.group = group; }
 
     public Long getId() {
         return id;
