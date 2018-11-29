@@ -4,11 +4,11 @@
 <form (ngSubmit)="login()" [formGroup]="form">
   <label for="email">Username or Email</label>
   <br>
-  <input type="email" formControlName="email" id="email">
+  <input type="email" formControlName="email" id="email" [(ngModel)]="usernameOrEmail">
   <br>
   <label for="pw">Password</label>
   <br>
-  <input type="password" formControlName="password" id="pw">
+  <input type="password" formControlName="password" id="pw" [(ngModel)]="password">
   <br>
   <button type="submit">Login</button>
 </form>

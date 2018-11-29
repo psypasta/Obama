@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../model/user';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {LoginService} from '../service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +12,14 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class LoginComponent implements OnInit {
   @Output() loggedIn = new EventEmitter<any>();
   form: FormGroup;
+  usernameOrEmail;
+  password;
 
   constructor(private fb: FormBuilder,
+  public loginService: LoginService,
   public dialogRef: MatDialogRef<LoginComponent>,
-  @Inject(MAT_DIALOG_DATA) public newUser: User)
- {
-  }
+  @Inject(MAT_DIALOG_DATA) public newUser: User) {
+   }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -33,6 +36,20 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    const loginCred: Object = {
+        usernameOrEmail: this.usernameOrEmail,
+        password: this.password
+    };
+    this.loginService.login(loginCred).subscribe(
+      token => {
+        console.log(token);
+      },
+      error => {
+        console.log('Login failed');
+      },
+      () => {
+      });
+
     console.log(`Login ${this.form.value}`);
     if (this.form.valid) {
       this.loggedIn.emit(

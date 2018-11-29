@@ -27,6 +27,7 @@ export class ThreadService {
   }
 
   getAllThreads(): Observable<Thread[]> {
+    console.log('hej');
     return this.http.get<Thread[]>(threadURL + '');
   }
 
