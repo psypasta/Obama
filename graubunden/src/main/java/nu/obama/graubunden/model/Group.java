@@ -13,11 +13,15 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    // Group shall contain the total amount of upboats from all the posts upboats.
+    // All groups
     @NotBlank
     @Column(length = 30)
     private String groupName;
 
     @ManyToOne
+    @JoinColumn(name = "users")
     private User user;
 
     @NotBlank

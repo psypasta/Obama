@@ -19,6 +19,22 @@ public class CreatePostRequest {
     @NotBlank
     private String content;
 
+    @NotNull
+    private long groupId;
+
+    @NotNull
+    private int boats;
+
+    public int getBoats() { return boats; }
+
+    public long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(long groupId) {
+        this.groupId = groupId;
+    }
+
     public long getUserId() {
         return userId;
     }

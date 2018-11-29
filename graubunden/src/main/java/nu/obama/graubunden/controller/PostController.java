@@ -55,6 +55,7 @@ public class PostController {
         return postRepository.findAll();
     }
 
+
     @GetMapping("/{id}")
     public Post retrievePost(@PathVariable long id) {
         Optional<Post> post = postRepository.findById(id);
@@ -64,6 +65,8 @@ public class PostController {
 
         return post.get();
     }
+
+
 
     @PostMapping
     public ResponseEntity<?> createPost(@Valid @RequestBody CreatePostRequest createPostRequest) {
@@ -79,12 +82,19 @@ public class PostController {
         }
 
         Optional<User> userOptional = userRepository.findById(createPostRequest.getUserId());
+        Optional<Group> groupOptional = groupRepository.findById(createPostRequest.getGroupId());
 
         if(!userOptional.isPresent())
-            return new ResponseEntity(new ApiResponse(false, "      "),
+            return new ResponseEntity(new ApiResponse(false, "User broken"),
+                    HttpStatus.BAD_REQUEST);
+
+        if(!groupOptional.isPresent())
+            return new ResponseEntity(new ApiResponse(false, "Group broken"),
                     HttpStatus.BAD_REQUEST);
 
         p.setUser(userOptional.get());
+
+        p.setGroup(groupOptional.get());
 
         Post result = postRepository.save(p);
 
