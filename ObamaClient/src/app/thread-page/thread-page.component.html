@@ -1,6 +1,12 @@
 
-<div *ngIf="finishedLoading">
-<h1 class="title">{{thread.title}}</h1>
-<p small>created by {{thread.createBy.email}}</p>
+<div *ngIf="loadedPost">
+<h1 class="title">{{thread.postTitle}}</h1>
+<p small>created by {{thread.user.username}}</p>
 <p>{{thread.content}}</p>
+</div>
+
+<div *ngIf="loadedComments">
+<app-comment *ngFor="let comment of comments"
+            [comment]="comment">
+</app-comment>
 </div>

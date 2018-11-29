@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Thread} from '../model/thread';
+import {Comment} from '../model/comment';
+import {ThreadService} from '../service/thread.service';
+import {GroupService} from '../service/group.service';
 
 @Component({
   selector: 'app-comment',
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentComponent implements OnInit {
 
-  constructor() { }
+  @Input() comment: Comment;
+
+  constructor() {}
+
+// Title, username, associated group, upboats, comments
+  // funktion för själva länken, en för själva thread content. funktion för username i thread
 
   ngOnInit() {
+    console.log(this.comment);
   }
-
 }

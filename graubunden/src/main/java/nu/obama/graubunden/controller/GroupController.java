@@ -40,7 +40,7 @@ public class GroupController {
     public ResponseEntity<?> createGroup(@Valid @RequestBody CreateGroupRequest createGroupRequest) {
 
         Group group = new Group(createGroupRequest.getGroupName(),
-                                createGroupRequest.getGroupName());
+                                createGroupRequest.getGroupTopic());
 
         Optional<User> userOptional = userRepository.findById(createGroupRequest.getUserId());
 

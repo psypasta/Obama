@@ -9,7 +9,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  @Output() loggedIn = new EventEmitter<User>();
+  @Output() loggedIn = new EventEmitter<any>();
   form: FormGroup;
 
   constructor(private fb: FormBuilder,
@@ -36,10 +36,10 @@ export class LoginComponent implements OnInit {
     console.log(`Login ${this.form.value}`);
     if (this.form.valid) {
       this.loggedIn.emit(
-        new User(
-          this.form.value.email,
-          this.form.value.password
-        )
+        {
+          email: this.form.value.email,
+          pw: this.form.value.password
+        }
       );
     }
   }
