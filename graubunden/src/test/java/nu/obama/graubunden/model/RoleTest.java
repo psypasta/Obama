@@ -18,5 +18,6 @@ public class RoleTest {
 
         Assertions.assertThat(user.getName()).isEqualTo(RoleName.ROLE_USER);
         Assertions.assertThat(admin.getName()).isEqualTo(RoleName.ROLE_ADMIN);
+
     }
 }

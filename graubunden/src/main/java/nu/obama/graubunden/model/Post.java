@@ -39,6 +39,10 @@ public class Post {
     @NotNull
     private int upboats;
 
+    public Post(){
+
+    }
+
     public Post(String title, String content) {
         this.postTitle = title;
         this.content = content;
