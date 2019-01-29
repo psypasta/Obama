@@ -1,12 +1,17 @@
 <div class="navbar">
-  <a href="home">Obama</a>
-  <a href="">Community</a>
-  <a href="createPost">Create New Post</a>
+  <a routerLink="/home">Obama</a>
+  <div *ngIf="!loggedIn">
+    <a href="createPost">Create New Post</a>
   <div class="dropdown">
-    <button class="dropbtn" (click)="loginPage()">Login
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
+      <button class="dropbtn" (click)="loginPage()">Login
+        <i class="fa fa-caret-down"></i>
+      </button>
+    </div>
+    </div>
+  <div *ngIf="loggedIn">
+    <div class="dropdown">
+      <a class="dropbtn" routerLink="/userpage">Profile</a>
+        <i class="fa fa-caret-down"></i>
     </div>
   </div>
 </div>

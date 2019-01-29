@@ -1,12 +1,9 @@
-
 <div id="post">
-  <div id="title">
-    <h3>
-  <a href="thread/{{thread.id}}">{{thread.postTitle}}</a>
-    </h3>
-      <div id="information">
-             Created by: <a routerLink="/userpage" target="_blank">{{thread.user.username}}</a>
-      </div>
-  <br>
+  <h3>
+    <a routerLink="/thread/{{thread.id}}">{{thread.postTitle}}</a>
+  </h3>
+  <div id="information">
+         Created by: <a routerLink="/userpage">{{thread.user.username}}</a>
   </div>
+  <br>
 </div>

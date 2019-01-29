@@ -21,13 +21,13 @@ import {
   MatDialog,
 } from '@angular/material';
 import { CommentComponent } from './comment/comment.component';
-import {HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
 import { CreatePostComponent } from './create-post/create-post.component';
-import {HttpClientModule} from '@angular/common/http';
 import {MatNativeDateModule} from '@angular/material';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatRadioModule } from '@angular/material/radio';
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/http';
+import {DataService} from './data.service';
 
 @NgModule({
   declarations: [
@@ -67,8 +67,9 @@ import { MatRadioModule } from '@angular/material/radio';
     HttpClientModule,
   ],
   entryComponents: [LoginComponent],
-  providers: [MatDialog,
-    {provide: APP_BASE_HREF, useValue: '/'}],
+  providers: [{provide: APP_BASE_HREF, useValue: '/' },
+    DataService, MatDialog,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,0 +1,8 @@
+.borderAroundComments {
+  border: 1px;
+  border-style: dashed;
+  padding: 5px;
+}
+.threadPageContent {
+  padding: 30px;
+}
