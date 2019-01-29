@@ -16,7 +16,7 @@ export class CreatePostComponent implements OnInit {
   loading = true;
   userId = 1;
   user;
-  newPost: Thread;
+  newPost;
   textLink = 'Text';
   textOrLinks: string[] = ['Text', 'Link'];
 
@@ -27,7 +27,20 @@ export class CreatePostComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.makeThreadTemplate();
     this.getUser();
+  }
+
+  makeThreadTemplate() {
+    const newPost = {
+      postTitle: '',
+      content: '',
+      postType: true,
+      userId: 0,
+      groupId: 1,
+    };
+    console.log(newPost);
+    this.newPost = newPost;
   }
 
   onRadioChange1(event: MatRadioChange) {
@@ -51,26 +64,25 @@ export class CreatePostComponent implements OnInit {
     this.userService.getUser(this.userId).subscribe(
       user => {
         console.log(user);
+        this.newPost.userId = user.id;
         this.user = user;
       },
       error => {
         console.log('Well this is wrong');
       },
       () => {
-        // @ts-ignore
-        this.newPost = new Thread(0, 'LINK_POST', this.user, '', '');
+        // @ts-ignore;
         console.log(this.newPost);
-        console.log(this.newPost.user.username);
         this.loading = false;
       });
   }
   create() {
     if (this.radioValue == 1) {
       // @ts-ignore
-      this.newPost.postType = 'LINK_POST';
+      this.newPost.postType = true;
     } else {
       // @ts-ignore
-      this.newPost.postType = 'TEXT_POST';
+      this.newPost.postType = false;
     }
     console.log(this.newPost);
 

@@ -28,6 +28,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatRadioModule } from '@angular/material/radio';
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/http';
 import {DataService} from './data.service';
+import {TokenInterceptor} from './token-interceptor';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,11 @@ import {DataService} from './data.service';
   entryComponents: [LoginComponent],
   providers: [{provide: APP_BASE_HREF, useValue: '/' },
     DataService, MatDialog,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
