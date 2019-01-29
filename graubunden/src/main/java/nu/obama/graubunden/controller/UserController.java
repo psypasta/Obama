@@ -46,10 +46,7 @@ public class UserController {
 
         if (!user.isPresent())
             throw new AppException("id-" + id);
-
         return user.get();
-
-
     }
 
     @PostMapping
