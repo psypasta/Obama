@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'content', component: ThreadPageComponent},
   {path: 'userpage', component: UserProfileComponent},
   {path: 'thread/:id', component: ThreadPageComponent},
-  {path: 'g/', component: GroupComponent},
+  {path: 'group', component: GroupComponent},
   {path: 'createPost', component: CreatePostComponent},
 ];
 
