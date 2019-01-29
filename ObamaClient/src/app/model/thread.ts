@@ -8,6 +8,26 @@ enum PostType {
 
 export class Thread {
 
+  set title(value: String) {
+    this._title = value;
+  }
+
+  set content(value: String) {
+    this._content = value;
+  }
+
+  set user(value: User) {
+    this._user = value;
+  }
+
+  get postType(): PostType {
+    return this._postType;
+  }
+
+  set postType(value: PostType) {
+    this._postType = value;
+  }
+
   private _id: number;
   private _title: String;
   private _content: String;
@@ -35,7 +55,7 @@ export class Thread {
     return this._content;
   }
 
-  get createBy(): User {
+  get user(): User {
     return this._user;
   }
 }

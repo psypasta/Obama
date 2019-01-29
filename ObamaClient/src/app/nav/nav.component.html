@@ -1,7 +1,8 @@
 <div class="navbar">
   <a routerLink="/home">Obama</a>
   <div *ngIf="!loggedIn">
-    <div class="dropdown">
+    <a routerLink="createPost">Create New Post</a>
+  <div class="dropdown">
       <button class="dropbtn" (click)="loginPage()">Login
         <i class="fa fa-caret-down"></i>
       </button>
