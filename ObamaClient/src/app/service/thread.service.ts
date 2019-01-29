@@ -31,4 +31,8 @@ export class ThreadService {
     return this.http.get<Thread[]>(threadURL + '');
   }
 
+  createThread(thread: Thread): Observable<any> {
+    console.log(thread);
+    return this.http.post<Thread>(threadURL, thread, httpOptions).pipe();
+  }
 }

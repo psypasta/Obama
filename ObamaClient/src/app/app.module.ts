@@ -18,11 +18,16 @@ import {
   MatDialogModule,
   MatProgressSpinnerModule,
   MatButtonModule,
-  MatDialog
+  MatDialog,
 } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentComponent } from './comment/comment.component';
-import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
+import { CreatePostComponent } from './create-post/create-post.component';
+import {HttpClientModule} from '@angular/common/http';
+import {MatNativeDateModule} from '@angular/material';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -35,9 +40,19 @@ import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/h
     GroupComponent,
     ThreadPageComponent,
     CommentComponent,
+    CreatePostComponent,
+
+  ],
+  exports: [
 
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule,
@@ -46,6 +61,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/h
     MatInputModule,
     MatDialogModule,
     MatButtonModule,
+    MatRadioModule,
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
     HttpClientModule,
