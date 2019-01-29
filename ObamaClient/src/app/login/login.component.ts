@@ -1,8 +1,10 @@
-import {Component, EventEmitter, OnInit, Output, Inject} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, Inject, Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../model/user';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {LoginService} from '../service/login.service';
+import {DataService} from '../data.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,8 @@ import {LoginService} from '../service/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  @Output() loggedIn = new EventEmitter<any>();
+  @Input() loggedIn: boolean;
+  @Output() logInEmitter = new EventEmitter<any>();
   form: FormGroup;
   usernameOrEmail;
   password;
@@ -18,6 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
   public loginService: LoginService,
   public dialogRef: MatDialogRef<LoginComponent>,
+  public data: DataService,
   @Inject(MAT_DIALOG_DATA) public newUser: User) {
    }
 
@@ -35,6 +39,18 @@ export class LoginComponent implements OnInit {
     this.dialogRef.close();
   }
 
+
+  loginEvent(loggedIn: boolean) {
+    // this.logEvent.emit(loggedIn);
+    this.data.changeMessage(loggedIn);
+    console.log(loggedIn + 'Login Event');
+  }
+  setLoggedInTrue() {
+    console.log(this.loggedIn + 'Set Logged In True');
+    this.loggedIn = true;
+    this.loginEvent(this.loggedIn);
+    console.log(this.loggedIn);
+  }
   login() {
     const loginCred: Object = {
         usernameOrEmail: this.usernameOrEmail,
@@ -43,16 +59,21 @@ export class LoginComponent implements OnInit {
     this.loginService.login(loginCred).subscribe(
       token => {
         console.log(token);
+        localStorage.setItem('token', token.accessToken);
+        console.log(localStorage.getItem('token'));
+        this.dialogRef.close();
       },
       error => {
         console.log('Login failed');
       },
       () => {
+        this.setLoggedInTrue();
+        console.log('wtf');
       });
 
-    console.log(`Login ${this.form.value}`);
+    // console.log(`Login ${this.form.value}`);
     if (this.form.valid) {
-      this.loggedIn.emit(
+      this.logInEmitter.emit(
         {
           email: this.form.value.email,
           pw: this.form.value.password

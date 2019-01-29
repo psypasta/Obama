@@ -23,6 +23,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentComponent } from './comment/comment.component';
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/http';
+import {DataService} from './data.service';
 
 @NgModule({
   declarations: [
@@ -51,8 +52,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/h
     HttpClientModule,
   ],
   entryComponents: [LoginComponent],
-  providers: [MatDialog,
-    {provide: APP_BASE_HREF, useValue: '/'}],
+  providers: [{provide: APP_BASE_HREF, useValue: '/' },
+    DataService, MatDialog,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
