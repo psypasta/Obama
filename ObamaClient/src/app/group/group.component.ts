@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ThreadService} from '../service/thread.service';
+import {GroupService} from '../service/group.service';
+import {Thread} from '../model/thread';
+import {ActivatedRoute} from '@angular/router';
+import {Group} from '../model/group';
 
 @Component({
   selector: 'app-group',
@@ -6,10 +11,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./group.component.css']
 })
 export class GroupComponent implements OnInit {
+  group;
+  loadedPost;
 
-  constructor() { }
+  constructor(
+    private threadService: ThreadService,
+    private groupService: GroupService,
+    private route: ActivatedRoute,
+  ) {
+
+  }
 
   ngOnInit() {
+    this.getGroup();
+  }
+
+  getGroup(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.groupService.getGroup(id).subscribe(
+      group => {
+        console.log(group);
+        this.group = group;
+      },
+      error => {
+        console.log('Well this is Gwrong');
+      },
+      () => {
+        this.loadedPost = true;
+      });
   }
 
 }

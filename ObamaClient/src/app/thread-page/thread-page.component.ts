@@ -10,7 +10,7 @@ import {CommentService} from '../service/comment.service';
   styleUrls: ['./thread-page.component.css']
 })
 export class ThreadPageComponent implements OnInit {
-  id: number;
+  id: String;
   thread;
   comments;
   loadedPost;
