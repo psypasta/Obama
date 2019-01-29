@@ -10,9 +10,9 @@ const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'content', component: ThreadPageComponent},
-  {path: 'userpage', component: UserProfileComponent},
+  {path: 'userpage/:id', component: UserProfileComponent},
   {path: 'thread/:id', component: ThreadPageComponent},
-  {path: 'g/', component: GroupComponent},
+  {path: 'group/:id', component: GroupComponent},
 ];
 
 @NgModule({

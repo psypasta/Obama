@@ -1,7 +1,9 @@
 #post {
   padding: 20px;
 }
-
+.upboats {
+  font-size: 14px;
+}
 #title {
   font-size: 16px;
   width: auto;
@@ -13,4 +15,11 @@
   width: auto;
   height: auto;
   background-color: transparent;
+}
+.greyishIDforthreadcomponent {
+  color: lightslategrey;
+  font-size: 1em;
+}
+hr {
+  border-bottom: dot-dash;
 }

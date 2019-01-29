@@ -60,7 +60,9 @@ export class LoginComponent implements OnInit {
       token => {
         console.log(token);
         localStorage.setItem('token', token.accessToken);
+        localStorage.setItem('userID', this.usernameOrEmail);
         console.log(localStorage.getItem('token'));
+        console.log(localStorage.getItem('userID'));
         this.dialogRef.close();
       },
       error => {
