@@ -1,12 +1,15 @@
-
-<div *ngIf="loadedPost">
-<h1 class="title">{{thread.postTitle}}</h1>
-<p small>created by {{thread.user.username}}</p>
-<p>{{thread.content}}</p>
+<div class="threadPageContent" *ngIf="loadedPost">
+  <h1 class="title">{{thread.postTitle}}</h1>
+  Created by: <a routerLink="/userpage" target="_blank">{{thread.user.username}}</a>
+  <p>{{thread.content}}</p>
 </div>
-
-<div *ngIf="loadedComments">
-<app-comment *ngFor="let comment of comments"
-            [comment]="comment">
-</app-comment>
+<h3>Comments: </h3>
+<div class="borderAroundComments">
+  <div>
+    <div *ngIf="loadedComments">
+      <app-comment *ngFor="let comment of comments"
+                   [comment]="comment">
+      </app-comment>
+    </div>
+  </div>
 </div>

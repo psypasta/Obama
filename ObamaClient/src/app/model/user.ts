@@ -39,4 +39,20 @@ export class User {
   get username(): String {
     return this._username;
   }
+
+  set username(value: String) {
+    this._username = value;
+  }
+
+  set email(value: String) {
+    this._email = value;
+  }
+
+  set name(value: String) {
+    this._name = value;
+  }
+
+  set roles(value: Roles) {
+    this._roles = value;
+  }
 }

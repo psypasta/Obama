@@ -1,5 +1,5 @@
 #post {
-  padding: auto;
+  padding: 20px;
 }
 
 #title {
@@ -12,4 +12,5 @@
   font-size: 14px;
   width: auto;
   height: auto;
+  background-color: transparent;
 }

@@ -32,7 +32,7 @@ public class UserController {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    UserRepository userRepository;
+    public UserRepository userRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -70,6 +70,35 @@ public class UserController {
                 .buildAndExpand(result.getUsername()).toUri();
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+    }
+
+    public String addUser(User user1) {
+        if(userRepository.existsByUsername(user1.getUsername())) {
+            return ("Username already taken");
+        }
+
+        if(userRepository.existsByEmail(user1.getEmail())) {
+            return ("Email already taken");
+        }
+
+        // Creating user's account
+        User user = new User(user1.getName(), user1.getUsername(),
+                user1.getEmail(), user1.getPassword());
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+                .orElseThrow(() -> new AppException("User Role not set."));
+
+        user.setRoles(Collections.singleton(userRole));
+
+        User result = userRepository.save(user);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentContextPath().path("/users/{username}")
+                .buildAndExpand(result.getUsername()).toUri();
+
+        return ("new user added");
     }
 
 

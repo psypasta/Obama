@@ -18,11 +18,17 @@ import {
   MatDialogModule,
   MatProgressSpinnerModule,
   MatButtonModule,
-  MatDialog
+  MatDialog,
 } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentComponent } from './comment/comment.component';
+import { CreatePostComponent } from './create-post/create-post.component';
+import {MatNativeDateModule} from '@angular/material';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatRadioModule } from '@angular/material/radio';
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/http';
+import {DataService} from './data.service';
+import {TokenInterceptor} from './token-interceptor';
 
 @NgModule({
   declarations: [
@@ -35,9 +41,19 @@ import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/h
     GroupComponent,
     ThreadPageComponent,
     CommentComponent,
+    CreatePostComponent,
+
+  ],
+  exports: [
 
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule,
@@ -46,13 +62,20 @@ import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/h
     MatInputModule,
     MatDialogModule,
     MatButtonModule,
+    MatRadioModule,
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
     HttpClientModule,
   ],
   entryComponents: [LoginComponent],
-  providers: [MatDialog,
-    {provide: APP_BASE_HREF, useValue: '/'}],
+  providers: [{provide: APP_BASE_HREF, useValue: '/' },
+    DataService, MatDialog,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

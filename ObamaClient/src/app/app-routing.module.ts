@@ -5,6 +5,7 @@ import {HomeComponent} from './home/home.component';
 import {ThreadPageComponent} from './thread-page/thread-page.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {GroupComponent} from './group/group.component';
+import {CreatePostComponent} from './create-post/create-post.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: 'content', component: ThreadPageComponent},
   {path: 'userpage', component: UserProfileComponent},
   {path: 'thread/:id', component: ThreadPageComponent},
-  {path: 'g/', component: GroupComponent},
+  {path: 'group', component: GroupComponent},
+  {path: 'createPost', component: CreatePostComponent},
 ];
 
 @NgModule({

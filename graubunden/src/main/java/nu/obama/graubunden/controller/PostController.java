@@ -105,4 +105,6 @@ public class PostController {
         return ResponseEntity.created(location).body(new ApiResponse(true, "Post registered successfully"));
     }
 
+
+
 }

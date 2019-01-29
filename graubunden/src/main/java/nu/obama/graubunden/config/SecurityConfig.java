@@ -104,7 +104,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,
                         "/api/users/**",
                         "/posts/**",
-                        "/groups/**")
+                        "/groups/**",
+                        "/comments/**")
                 .permitAll()
                 .antMatchers("/users/**")
                 .permitAll()

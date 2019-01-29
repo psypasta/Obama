@@ -1,0 +1,39 @@
+<div *ngIf="loading">
+  <h1>I am loading...</h1>
+</div>
+<div *ngIf="!loading">
+<h1>
+  Create Post
+</h1>
+
+<br>
+<label> Title:
+  <input
+         [(ngModel)]="newPost.postTitle">
+</label>
+<br>
+<p>Create by
+  {{user.username}}
+</p>
+
+  <mat-radio-group [(ngModel)]="radioValue">
+    <mat-radio-button value="1" > Text </mat-radio-button>
+    <mat-radio-button value="2" > Link</mat-radio-button>
+  </mat-radio-group>
+<br/>
+
+<div *ngIf="radioValue == 1">
+<textarea
+  [(ngModel)] ="newPost.content" name="content">
+</textarea>
+</div>
+
+<div *ngIf="radioValue == 2">
+    <input
+      [(ngModel)] ="newPost.content" name="content">
+</div>
+
+  <button (click)="cancel()">Cancel</button>
+  <button (click)="create()">Post new post</button>
+
+</div>
