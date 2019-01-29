@@ -11,28 +11,35 @@ import {Observable} from 'rxjs';
 })
 export class GroupsComponent implements OnInit {
 
+  selectedValue: number;
   groups: Group[];
-  loading: Boolean;
+  loading;
 
   constructor(public groupService: GroupService) {}
 
   ngOnInit() {
     this.loading = true;
     this.getGroups();
-    console.log('hejpådigmax');
+  }
+
+  metodnamnet() {
+    console.log(this.selectedValue);
   }
 
   getGroups() {
     this.groupService.getAllGroups().subscribe(
       groups => {
-        console.log(groups);
         this.groups = groups;
+        console.log(this.groups);
       },
       error => {
         console.log('getAllGroups error in getGroups-Groups Component');
       },
       () => {
         this.loading = false;
+        console.log(this.loading + ' hej ');
+        console.log(this.groups[0].groupName);
+        console.log(this.groups[0].id);
       });
   }
 

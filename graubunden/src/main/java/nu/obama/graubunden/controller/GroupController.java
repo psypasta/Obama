@@ -59,8 +59,8 @@ public class GroupController {
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "Group registered successfully"));
     }
-
-    @GetMapping
+    
+    @RequestMapping(method = RequestMethod.GET)
     public List<Group> getGroups(){
         return groupRepository.findAll();
     }

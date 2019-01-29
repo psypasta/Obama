@@ -4,7 +4,7 @@ import {Group} from '../model/group';
 import {Observable} from 'rxjs';
 
 
-const groupURL = 'http://localhost:5000/group';
+const groupURL = 'http://localhost:5000/group/';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -14,8 +14,6 @@ const httpOptions = {
 })
 export class GroupService {
 
-  private group;
-
   constructor(private http: HttpClient) { }
 
   getGroup(groupId: number): Object {
@@ -24,6 +22,6 @@ export class GroupService {
 
   getAllGroups(): Observable<Group[]> {
     console.log('inside: getAllGroups');
-    return this.http.get<Group[]>(groupURL + '');
+    return this.http.get<Group[]>(groupURL);
   }
 }

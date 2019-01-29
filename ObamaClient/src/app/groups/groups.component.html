@@ -1,3 +1,14 @@
 <p>
   groups works!
 </p>
+
+<div *ngIf="!loading">
+  <select [(ngModel)]="selectedValue">
+    <option value="">-- choose a GROUP--</option>
+    <option *ngFor="let group of groups" [value]="group.id">
+      {{group.groupName}}
+    </option>
+  </select>
+
+  <button (click)="metodnamnet()">Send it</button>
+</div>
