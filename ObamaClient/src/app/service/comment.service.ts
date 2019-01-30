@@ -29,4 +29,9 @@ export class CommentService {
   getUserComments(userId: number): Observable<Comment[]> {
     return this.http.get<Comment[]>(commentURL + 'user/' + userId);
   }
+
+  createComment(comment: Object): Observable<any> {
+    console.log(comment);
+    return this.http.post<Object>(commentURL, comment, httpOptions).pipe();
+  }
 }

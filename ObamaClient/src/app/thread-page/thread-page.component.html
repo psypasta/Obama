@@ -10,6 +10,15 @@
       <app-comment *ngFor="let comment of comments"
                    [comment]="comment">
       </app-comment>
+      <div *ngIf="addingNewComment">
+        <P>{{newCommentUsername}}:</P>
+        <textarea
+          [(ngModel)] ="newComment.content" name="content">
+</textarea>
+        <button (click)="cancelComment()">Cancel</button>
+        <button (click)="addComment()">Add</button>
+      </div>
     </div>
+    <button (click)="commentAdder()">Add comment</button>
   </div>
 </div>
