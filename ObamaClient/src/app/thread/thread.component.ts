@@ -25,6 +25,8 @@ export class ThreadComponent implements OnInit {
 
 // Title, username, associated group, upboats, comments
   // funktion för själva länken, en för själva thread content. funktion för username i thread
+
+
   public associatedLink() {
 
     return this.threadService.getAllThreads();
@@ -39,3 +41,4 @@ export class ThreadComponent implements OnInit {
   }
 
 }
+

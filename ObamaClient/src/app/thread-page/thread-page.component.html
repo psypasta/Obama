@@ -1,15 +1,23 @@
 <div class="threadPageContent" *ngIf="loadedPost">
   <h1 class="title">{{thread.postTitle}}</h1>
-  Created by: <a routerLink="/userpage" target="_blank">{{thread.user.username}}</a>
+  Created by: <a routerLink="/userpage">{{thread.user.username}}</a>
   <p>{{thread.content}}</p>
 </div>
-<h3>Comments: </h3>
+<h3>Comment Section: </h3>
 <div class="borderAroundComments">
   <div>
     <div *ngIf="loadedComments">
       <app-comment *ngFor="let comment of comments"
                    [comment]="comment">
       </app-comment>
+      <div *ngIf="addingNewComment">
+        <P>{{newCommentUsername}}:</P>
+        <textarea
+          [(ngModel)] ="newComment.content" name="content">
+</textarea>
+        <button (click)="cancelComment()">Cancel</button>
+        <button (click)="addComment()">Add</button>
+      </div>
     </div>
-  </div>
+    <button (click)="commentAdder()">Add comment</button>
 </div>

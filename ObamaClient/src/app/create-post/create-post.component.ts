@@ -5,6 +5,7 @@ import {UserService} from '../service/user.service';
 import {Role} from '../model/role';
 import {MatRadioChange} from '@angular/material';
 import {log} from 'util';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-post',
@@ -17,12 +18,12 @@ export class CreatePostComponent implements OnInit {
   userId = 1;
   user;
   newPost;
-  textLink = 'Text';
-  textOrLinks: string[] = ['Text', 'Link'];
+  threadId;
 
   constructor(
     public threadService: ThreadService,
     public userService: UserService,
+    public router: Router,
   ) {
   }
 
@@ -88,14 +89,19 @@ export class CreatePostComponent implements OnInit {
 
    this.threadService.createThread(this.newPost).subscribe(
     observable => {
-      console.log(observable);
+      console.log(observable.message);
+      this.threadId = observable.message;
     },
      error => {
       console.log('Create thread failed');
      },
      () => {
       console.log('Thread completed');
+       this.router.navigate(['thread/' + this.threadId]);
      });
+  }
+  cancel() {
+    this.router.navigate(['']);
   }
 
 
