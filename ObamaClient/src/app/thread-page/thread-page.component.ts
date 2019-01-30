@@ -3,6 +3,7 @@ import {Thread} from '../model/thread';
 import {ThreadService} from '../service/thread.service';
 import {ActivatedRoute} from '@angular/router';
 import {CommentService} from '../service/comment.service';
+import {UserService} from '../service/user.service';
 
 @Component({
   selector: 'app-thread-page',
@@ -15,19 +16,27 @@ export class ThreadPageComponent implements OnInit {
   comments;
   loadedPost;
   loadedComments;
+  newCommentUsername: string;
+  newComment;
+  addingNewComment = false;
 
   constructor(
     private threadService: ThreadService,
     private commentService: CommentService,
     private route: ActivatedRoute,
+    private userService: UserService,
   ) {
   }
 
   ngOnInit() {
+    this.getCurrentUser();
     console.log('Crashing and burning yet?');
     this.getThread();
   }
 
+  getCurrentUser() {
+    this.newCommentUsername = 'Bman';
+  }
   getThread(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.threadService.getThread(id).subscribe(
@@ -41,6 +50,7 @@ export class ThreadPageComponent implements OnInit {
       () => {
         this.loadedPost = true;
         this.getComments();
+        this.NewCommentTemplate();
       });
   }
   getComments(): void {
@@ -56,5 +66,34 @@ export class ThreadPageComponent implements OnInit {
         console.log('Comments loaded');
         this.loadedComments = true;
       });
+   }
+   NewCommentTemplate() {
+     const newComment = {
+       content: '',
+       userId: 1,
+       postId: this.thread.id,
+     };
+     this.newComment = newComment;
+   }
+   cancelComment() {
+    this.addingNewComment = false;
+   }
+   commentAdder() {
+    this.addingNewComment = true;
+   }
+   addComment() {
+    console.log(this.newComment);
+     this.commentService.createComment(this.newComment).subscribe(
+       observable => {
+         console.log(observable);
+       },
+       error => {
+         console.log('Create comment failed');
+       },
+       () => {
+         console.log('Comment completed');
+         this.addingNewComment = false;
+         this.getComments();
+       });
    }
 }
