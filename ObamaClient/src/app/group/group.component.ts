@@ -27,8 +27,10 @@ export class GroupComponent implements OnInit {
   }
 
   getGroup(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.groupService.getGroup(id).subscribe(
+    console.log(this.route.snapshot.paramMap.get('id').toString());
+    const id = this.route.snapshot.paramMap.get('id').toString();
+    console.log('I love my ' + id);
+    this.groupService.getGroup(id.toString()).subscribe(
       group => {
         console.log(group);
         this.group = group;
@@ -40,5 +42,6 @@ export class GroupComponent implements OnInit {
         this.loadedPost = true;
       });
   }
+  
 
 }

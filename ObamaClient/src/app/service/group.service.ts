@@ -6,6 +6,7 @@ import {Thread} from '../model/thread';
 
 
 const groupURL = 'http://localhost:5000/group/';
+
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -17,8 +18,9 @@ export class GroupService {
 
   constructor(private http: HttpClient) { }
 
-  getGroup(groupId: number): Object {
-    return this.http.get<Group>(groupURL + groupId);
+
+  getGroup(groupId: string): Observable<Group> {
+    return this.http.get<Group>(groupURL + '' + groupId);
   }
 
   getAllGroups(): Observable<Group[]> {
