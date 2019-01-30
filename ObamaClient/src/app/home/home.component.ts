@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   this.getAllThreads();
   }
+
   getAllThreads() {
     this.threadService.getAllThreads().subscribe(
       threads => {

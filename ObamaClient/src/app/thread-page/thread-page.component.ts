@@ -11,7 +11,7 @@ import {UserService} from '../service/user.service';
   styleUrls: ['./thread-page.component.css']
 })
 export class ThreadPageComponent implements OnInit {
-  id: number;
+  id: String;
   thread;
   comments;
   loadedPost;

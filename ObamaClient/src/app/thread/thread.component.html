@@ -1,9 +1,13 @@
 <div id="post">
+  <p class="greyishIDforthreadcomponent">#{{thread.id}}</p>
   <h3>
+    <p class="upboats">{{thread.upboats}}</p>
     <a routerLink="/thread/{{thread.id}}">{{thread.postTitle}}</a>
   </h3>
   <div id="information">
-         Created by: <a routerLink="/userpage">{{thread.user.username}}</a>
+    Created by: <a routerLink="/userpage/{{thread.user.id}}">{{thread.user.username}}</a> in group:
+    <a routerLink="/group/{{thread.group.groupName}}">{{thread.group.groupName}}</a>
   </div>
   <br>
 </div>
+<hr>

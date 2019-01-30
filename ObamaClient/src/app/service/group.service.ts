@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Group} from '../model/group';
 import {Observable} from 'rxjs';
+import {Thread} from '../model/thread';
 
 
 const threadURL = 'http://localhost:5000/group';
@@ -18,7 +19,11 @@ export class GroupService {
 
   constructor(private http: HttpClient) { }
 
-  getGroup(groupId: number): Object {
-    return this.http.get<Group>(threadURL + groupId);
+  getGroup(groupId: number): Observable<Group> {
+    return this.http.get<Group>(threadURL + '' + groupId);
   }
+  getAllGroups(): Observable<Group[]> {
+    return this.http.get<Group[]>(threadURL + '');
+  }
+
 }
