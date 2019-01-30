@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +46,7 @@ public class GroupController {
         Optional<User> userOptional = userRepository.findById(createGroupRequest.getUserId());
 
         if(!userOptional.isPresent())
-            return new ResponseEntity(new ApiResponse(false, "      "),
+            return new ResponseEntity(new ApiResponse(false, "     "),
                     HttpStatus.BAD_REQUEST);
 
         group.setUser(userOptional.get());
@@ -57,7 +58,10 @@ public class GroupController {
                 .buildAndExpand(result.getId()).toUri();
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "Group registered successfully"));
-
-
+    }
+    
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Group> getGroups(){
+        return groupRepository.findAll();
     }
 }

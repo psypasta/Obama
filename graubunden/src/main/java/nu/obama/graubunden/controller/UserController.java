@@ -2,6 +2,7 @@ package nu.obama.graubunden.controller;
 
 
 import nu.obama.graubunden.exception.AppException;
+import nu.obama.graubunden.model.Comment;
 import nu.obama.graubunden.model.Role;
 import nu.obama.graubunden.model.RoleName;
 import nu.obama.graubunden.model.User;
@@ -14,15 +15,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users/")
@@ -39,6 +39,15 @@ public class UserController {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @GetMapping("/{id}")
+    public User retrieveUser(@PathVariable long id) {
+        Optional<User> user = userRepository.findById(id);
+
+        if (!user.isPresent())
+            throw new AppException("id-" + id);
+        return user.get();
+    }
 
     @PostMapping
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {

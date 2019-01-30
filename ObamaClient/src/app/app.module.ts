@@ -29,6 +29,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/http';
 import {DataService} from './data.service';
 import {TokenInterceptor} from './token-interceptor';
+import { GroupsComponent } from './groups/groups.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {TokenInterceptor} from './token-interceptor';
     ThreadPageComponent,
     CommentComponent,
     CreatePostComponent,
+    GroupsComponent,
 
   ],
   exports: [
